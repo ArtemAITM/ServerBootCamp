@@ -33,7 +33,7 @@ public class PlayType1 extends AppCompatActivity {
         public BouncingBallView(Context context) {
             super(context);
             paint.setColor(Color.RED);
-        }//пыпвп
+        }//пыпвпваы
 
         @Override
         protected void onDraw(Canvas canvas) {
