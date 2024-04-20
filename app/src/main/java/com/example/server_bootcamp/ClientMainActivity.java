@@ -3,6 +3,7 @@ package com.example.server_bootcamp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,7 +21,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ClientMainActivity extends AppCompatActivity {
-    private ActivityClientMainBinding binding;
     final String serverAddress = "192.168.0.173";//ip сервера
     final int serverPort = 12345;//не менять
     private Socket socket;
@@ -29,8 +29,7 @@ public class ClientMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityClientMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_client_main);
 //        try {
 //            socket = new Socket(serverAddress, serverPort);
 //            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -38,7 +37,8 @@ public class ClientMainActivity extends AppCompatActivity {
 //        } catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
-        binding.button.setOnClickListener(v -> {
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(v -> {
             Intent intent = new Intent(this, PlayType1.class);
             startActivity(intent);
         });
