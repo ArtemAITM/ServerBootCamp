@@ -33,7 +33,7 @@ public class PlayType1 extends AppCompatActivity {
         public BouncingBallView(Context context) {
             super(context);
             paint.setColor(Color.RED);
-        }//пыпвпваы
+        }
 
         @Override
         protected void onDraw(Canvas canvas) {
@@ -48,6 +48,13 @@ public class PlayType1 extends AppCompatActivity {
             if (x + radius > getWidth() || x - radius < 0) {
                 xVelocity = -xVelocity;
             }
+            if (x >= xusr1 - 100 && x <= xusr1 + 100 && y - radius <= 110) {
+                yVelocity = -yVelocity;
+            }
+            if (x >= xusr2 - 100 && x <= xusr2 + 100 && y + radius >= getHeight() - 110) {
+                yVelocity = -yVelocity;
+            }
+
             if (y + radius > getHeight()){
                 Toast.makeText(this.getContext(), "Победил user2", Toast.LENGTH_SHORT).show();
             } else if (y + radius < 0) {
