@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "359336567158",
+    "firebase_url": "https://gtlt-91812-default-rtdb.firebaseio.com",
+    "project_id": "gtlt-91812",
+    "storage_bucket": "gtlt-91812.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359336567158:android:fca9963d512fba42971a57",
+        "android_client_info": {
+          "package_name": "com.example.server_bootcamp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5h2Xy7e67nkUA7bnVc5DRukhRlS1O21Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

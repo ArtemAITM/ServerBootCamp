@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -31,12 +33,17 @@ android {
 }
 
 dependencies {
-
+    //noinspection UseTomlInstead
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    //noinspection UseTomlInstead
+    implementation("com.google.firebase:firebase-analytics")
 }

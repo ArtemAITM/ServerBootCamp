@@ -5,56 +5,57 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlayType1"
-    android:background="@color/fon_2">
+    android:background="@color/fon_2"
+    android:orientation="horizontal">
+
 
     <ImageView
-        android:id="@+id/fon2"
+        android:id="@+id/fon4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/fon_2"/>
+        app:srcCompat="@drawable/fon_4" />
 
-    <TextView
-        android:id="@+id/create_room"
+    <ImageView
+        android:id="@+id/color_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nerkoone_regular"
-        android:text="create room"
-        android:textColor="@color/white"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/join_the_room"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fon4"
+        app:layout_constraintStart_toEndOf="@+id/cubes_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/col_btn" />
 
-    <TextView
-        android:id="@+id/join_the_room"
+    <ImageView
+        android:id="@+id/cubes_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nerkoone_regular"
-        android:text="join the room"
-        android:textColor="@color/white"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fon2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nerkoone_regular"
-        android:text="back"
-        android:textColor="@color/fon_2"
-        android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/join_the_room" />
+        app:layout_constraintTop_toTopOf="@+id/fon4"
+        app:srcCompat="@drawable/cub_btn" />
 
+    <ImageView
+        android:id="@+id/tennis_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cubes_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ten_btn" />
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nerkoone_regular"
+        android:text="select mode"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/cubes_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
