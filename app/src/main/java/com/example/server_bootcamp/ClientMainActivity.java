@@ -1,84 +1,44 @@
 package com.example.server_bootcamp;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.ImageButton;
+import android.util.Log;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.example.server_bootcamp.databinding.ActivityClientMainBinding;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public class ClientMainActivity extends AppCompatActivity {
-
-    private EditText nameRoom;
-    public static String nameRoomString;
-    public static DatabaseReference mDataBase;
-    public float post;
-    String key;
-    float user_id = Math.round(Math.random() * 10000);
-    @SuppressLint("MissingInflatedId")
+    private ActivityClientMainBinding binding;
+    final String serverAddress = "192.168.0.173";
+    final int serverPort = 12345;
+    private Socket socket;
+    private BufferedReader reader;
+    private PrintWriter writer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_play_type2);
+        binding = ActivityClientMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        try {
+            socket = new Socket(serverAddress, serverPort);
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer = new PrintWriter(socket.getOutputStream(), true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        binding.button.setOnClickListener(v -> {
 
-        nameRoom = findViewById(R.id.room_code);
-        ImageButton button = findViewById(R.id.for_code);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(this, PlayType1.class);
-            nameRoomString = nameRoom.getText().toString();
-            key = nameRoomString;
-            startActivity(intent);
-            mDataBase = FirebaseDatabase.getInstance().getReference();
-            sendKeyAndCheckForMatch(key);
-        });
-    }
-    private void sendKeyAndCheckForMatch(String key) {
-        mDataBase.child(nameRoomString).child("key").setValue(nameRoomString).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    checkUsersWithKeyAndNavigate(key);
-                } else {
-                }
-            }
-        });
-    }
-    private void checkUsersWithKeyAndNavigate(String key) {
-        Query query = mDataBase.orderByChild("key").equalTo(key);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    int count = 0;
-                    for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-                        if (!userSnapshot.getKey().equals(nameRoomString)) {
-                            count++;
-                        }
-                    }
-
-                    if (count > 0) {
-                        Intent intent = new Intent(ClientMainActivity.this, PlayType1.class);
-                        startActivity(intent);
-                    } else {
-                    }
-                } else {
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+        });//
     }
 }
